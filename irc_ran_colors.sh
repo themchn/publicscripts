@@ -22,6 +22,7 @@ while read -n1 i; do
 	# Because irc has a 512byte message limit and each "letter" is multiple bytes due to formatting
 	# every ~100 lines needs to be broken by a newline. If additional formatting is added to this script
 	# it is likely you'll have to increase the number of line breaks. Use wc -c for byte count.
+        # TODO: actually count and add the bytes to get accurate line breaks
 	char_count=$(( $char_count + 1 ))
     if [ $char_count -gt 98 ]
     then
