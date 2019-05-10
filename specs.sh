@@ -43,7 +43,7 @@ esac
 uptime=$(uptime | awk '{print $3" "$4}' | sed 's/,//')
 
 case "$formatting" in
-plaintext)
+plaintext|"")
     bold=$(tput bold)
     normal=$(tput sgr0)
     echo "${bold}OS:${normal} $os ${bold}• CPU:${normal} $cpu ${bold}• Sockets:${normal} $sockets ${bold}• Memory:${normal} $memory ${bold}• Storage:${normal} $storage •${bold} Uptime:${normal} $uptime"
