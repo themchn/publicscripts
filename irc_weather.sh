@@ -7,4 +7,4 @@ location="$1"
 readarray -t weather_vars < <( curl -s -N wttr.in/"$location"?0?Q?T | cut -c 16- | sed 's/ *$//')
 
 # print it out
-echo "Conditions: "${weather_vars[0]}" • Temp: "${weather_vars[1]}" • Wind: "${weather_vars[2]}" • Visibility: "${weather_vars[3]}" • Rainfall: "${weather_vars[4]}""
+ printf "\\x02Conditions:\\x0f ${weather_vars[0]} \\x02• Temp:\\x0f ${weather_vars[1]} \\x02• Wind:\\x0f ${weather_vars[2]} \\x02• Visibility:\\x0f ${weather_vars[3]} \\x02• Rainfall:\\x0f ${weather_vars[4]}"
