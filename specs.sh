@@ -1,7 +1,23 @@
 #!/bin/bash
 
+# define output styling
 formatting=$1
 
+# basic help message
+if [ "$formatting" == "--help" ];
+    then
+        echo "Usage specs.sh [FORMAT]
+Output basic system specs for sharing.
+
+Formats available:
+
+    plaintext       outputs plaintext
+    weechat-direct  meant for use if running script from weechat with /exec
+    weechat-paste   outputs /exec command meant to be pasted into weechat"
+        exit 0
+fi
+
+# define system spec vars for formatted output
 os=$(grep PRETTY_NAME /etc/os-release | cut -d'"' -f2)
 cpu=$(grep "model name" /proc/cpuinfo | uniq | cut -d":" -f2 | sed 's/^ //')
 sockets=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
@@ -26,9 +42,19 @@ case $(echo -n $storage | wc -m) in
 esac 
 uptime=$(uptime | awk '{print $3" "$4}' | sed 's/,//')
 
-if [ "$formatting" == "weechat" ];
-	then
-		echo "/exec -o printf \"\\x02OS:\\x0f $os \\x02• CPU:\\x0f $cpu \\x02• Sockets:\\x0f $sockets \\x02• Memory:\\x0f $memory \\x02• Storage:\\x0f $storage \\x02• Uptime:\\x0f $uptime\""
-	else		
-		echo "OS: $os • CPU: $cpu • Sockets: $sockets • Memory: $memory • Storage: $storage • Uptime: $uptime"
-fi
+case "$formatting" in
+plaintext)
+    bold=$(tput bold)
+    normal=$(tput sgr0)
+    echo "${bold}OS:${normal} $os ${bold}• CPU:${normal} $cpu ${bold}• Sockets:${normal} $sockets ${bold}• Memory:${normal} $memory ${bold}• Storage:${normal} $storage •${bold} Uptime:${normal} $uptime"
+    ;;
+weechat-direct)
+    printf "\\x02OS:\\x0f $os \\x02• CPU:\\x0f $cpu \\x02• Sockets:\\x0f $sockets \\x02• Memory:\\x0f $memory \\x02• Storage:\\x0f $storage \\x02• Uptime:\\x0f $uptime"
+    ;;
+weechat-paste)
+    echo "/exec -o printf \"\\x02OS:\\x0f $os \\x02• CPU:\\x0f $cpu \\x02• Sockets:\\x0f $sockets \\x02• Memory:\\x0f $memory \\x02• Storage:\\x0f $storage \\x02• Uptime:\\x0f $uptime"\"
+    ;;
+*)
+    echo "Unrecognized format"
+    ;;
+esac
