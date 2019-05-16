@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # Nico Schottelius
+# https://code.ungleich.ch/nico/nsbin
 # 2018-03-30
 # Modified by themchn
 # 2018-05-16
