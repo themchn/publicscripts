@@ -48,7 +48,7 @@ dX1ZRr0IX//Z' | base64 -d > /tmp/keepass_logo_small.jpg
         string:'[APPLICATION]' \
         uint32:1 string:'/tmp/keepass_logo_small.jpg' \
         string:'' \
-        string:"Error mounting davfs" \
+        string:"Error mounting remote fs" \
         array:string:'' \
         dict:string:string:'','' \
         int32:3000
