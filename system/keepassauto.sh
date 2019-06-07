@@ -4,9 +4,9 @@
 mount $HOME/.keepass/
 mountcode="$?"
 if [ "$mountcode" -ne "0" ]
-	then
-		# keepass icon in base64
-		echo '/9j/4AAQSkZJRgABAQIAEQARAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkI
+    then
+        # keepass icon in base64
+        echo '/9j/4AAQSkZJRgABAQIAEQARAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkI
 CQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQ
 EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAwADADAREA
 AhEBAxEB/8QAHAABAAEFAQEAAAAAAAAAAAAACAkAAgUGBwEE/8QALxAAAQIFAwMDAwQDAQAAAAAA
@@ -41,8 +41,8 @@ AHKBqhPaqKpOqWME9eB+4VWSip5jl7BlVN/VG2Y0HDrjbY2hn86m7XLBfgWYVHV/3cW44j9wjRBa
 6KmOqKMA9cZP3K9jo6eE5YwZQe3T79717pFKks7jGqfpFDnWzIJYpSWlkH4qfWT1PKHHf4g5KUpy
 dX1ZRr0IX//Z' | base64 -d > /tmp/keepass_logo_small.jpg
 
-		# display notification with icon
-		dbus-send --type=method_call --dest='org.freedesktop.Notifications' \
+        # display notification with icon
+        dbus-send --type=method_call --dest='org.freedesktop.Notifications' \
         /org/freedesktop/Notifications org.freedesktop.Notifications.Notify \
         string:'[APPLICATION]' \
         uint32:1 string:'/tmp/keepass_logo_small.jpg' \
@@ -51,12 +51,12 @@ dX1ZRr0IX//Z' | base64 -d > /tmp/keepass_logo_small.jpg
         array:string:'' \
         dict:string:string:'','' \
         int32:3000
-		
-		# cleanup
-		sleep 1s
-		rm /tmp/keepass_logo_small.jpg
-	else
-		keepassxc
-		wait $!
-		fusermount -u $HOME/.keepass/
+        
+        # cleanup
+        sleep 1s
+        rm /tmp/keepass_logo_small.jpg
+    else
+        keepassxc
+        wait $!
+        fusermount -u $HOME/.keepass/
 fi
