@@ -1,6 +1,7 @@
 #!/bin/bash
 # mount webdav keepass folder and start keepassxc
-# requires dav2fs and the davfs mount set up for your user in /etc/fstab
+# requires mount to exist in fstab and your user to have permission to mount it
+# I personally use dav2fs to mount a webdav share hosted with seafile
 mount $HOME/.keepass/
 mountcode="$?"
 if [ "$mountcode" -ne "0" ]
