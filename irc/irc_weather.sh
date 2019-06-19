@@ -22,4 +22,4 @@ Partly*cloudy*)
     ;;    
 esac
 # print it out
- printf "\\x02Conditions:\\x0f ${weather_vars[0]} \\x02• Temp:\\x0f ${weather_vars[1]} \\x02• Wind:\\x0f ${weather_vars[2]} \\x02• Visibility:\\x0f ${weather_vars[3]} \\x02• Rainfall:\\x0f ${weather_vars[4]}\n"
+ printf "\\x02Conditions:\\x0f ${weather_vars[0]} \\x02• Temp:\\x0f ${weather_vars[1]} \\x02• Wind:\\x0f ${weather_vars[2]} \\x02• Visibility:\\x0f ${weather_vars[3]} \\x02• Rainfall:\\x0f ${weather_vars[4]}"
