@@ -4,7 +4,7 @@
 location="$1"
 
 # create array from wttr.in output
-readarray -t weather_vars < <( curl -s -N wttr.in/"$location"?0?Q?T | cut -c 16- | sed 's/ *$//')
+readarray -t weather_vars < <( curl -s -N wttr.in/"$location"?0?Q?T | cut -c 16- | sed 's/ *$//' | sed "s/^\x95 *//g")
 
 # add emoji of weather condition
 case "${weather_vars[0]}" in
