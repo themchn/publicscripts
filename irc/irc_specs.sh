@@ -19,7 +19,7 @@ fi
 
 # define system spec vars for formatted output
 os=$(grep PRETTY_NAME /etc/os-release | cut -d'"' -f2)
-cpu=$(grep "model name" /proc/cpuinfo | uniq | cut -d":" -f2 | sed 's/^ //')
+cpu=$(grep "model name" /proc/cpuinfo | uniq | cut -d":" -f2 | sed -e 's/^ //' -e 's/ \+/ /g')
 sockets=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
 memory=$(free -h | awk '/Mem/{print ""$2" Total ("$4" Free)"}')
 # add together bytes of all attached disks
